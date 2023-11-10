@@ -96,6 +96,8 @@ module.exports = function(trace, getStatsInterval, prefixesToWrap) {
   var peerconnectioncounter = 0;
   var isFirefox = !!window.mozRTCPeerConnection;
   var isEdge = !!window.RTCIceGatherer;
+  var prevById = {};
+  
   prefixesToWrap.forEach(function(prefix) {
     if (!window[prefix + 'RTCPeerConnection']) {
       return;
@@ -166,13 +168,12 @@ module.exports = function(trace, getStatsInterval, prefixesToWrap) {
         trace('ondatachannel', id, [event.channel.id, event.channel.label]);
       });
 
-      var prev = {};
       var getStats = function() {
         pc.getStats(null).then(function(res) {
           var now = map2obj(res);
           var base = JSON.parse(JSON.stringify(now)); // our new prev
-          trace('getstats', id, deltaCompression(prev, now));
-          prev = base;
+          trace('getstats', id, deltaCompression(prevById[id] || {}, now));
+          prevById[id] = base;
         });
       };
       // TODO: do we want one big interval and all peerconnections
@@ -392,4 +393,11 @@ module.exports = function(trace, getStatsInterval, prefixesToWrap) {
     }
   });
   */
+
+  return {
+    resetDelta() {
+      prevById = {};
+    }
+  }
+
 };
