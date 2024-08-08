@@ -6,7 +6,7 @@ module.exports = function(wsURL) {
     //console.log.apply(console, arguments);
     // TODO: drop getStats when not connected?
     var args = Array.prototype.slice.call(arguments);
-    args.push(new Date().getTime());
+    args.push(Date.now());
     if (args[1] instanceof RTCPeerConnection) {
       args[1] = args[1].__rtcStatsId;
     }
