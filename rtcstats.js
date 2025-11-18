@@ -341,7 +341,7 @@ module.exports = function(trace, getStatsInterval, prefixesToWrap) {
           }
         },
         function(err) {
-          trace('getUserMediaOnFailure', null, err.name);
+          trace('getUserMediaOnFailure', null, err?.name);
           if (eb) {
             eb(err);
           }
@@ -360,7 +360,7 @@ module.exports = function(trace, getStatsInterval, prefixesToWrap) {
         trace('navigator.mediaDevices.getUserMediaOnSuccess', null, dumpStream(stream));
         return stream;
       }, function(err) {
-        trace('navigator.mediaDevices.getUserMediaOnFailure', null, err.name);
+        trace('navigator.mediaDevices.getUserMediaOnFailure', null, err?.name);
         return Promise.reject(err);
       });
     };
