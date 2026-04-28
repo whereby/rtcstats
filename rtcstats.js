@@ -395,7 +395,7 @@ module.exports = function(trace, getStatsInterval, prefixesToWrap) {
   */
 
   return {
-    resetDelta() {
+    resetDelta: function() {
       prevById = {};
     }
   }
