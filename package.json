@@ -1,6 +1,6 @@
 {
   "name": "@whereby.com/rtcstats",
-  "version": "5.4.2",
+  "version": "5.4.3",
   "description": "gather WebRTC API traces and statistics",
   "main": "rtcstats.js",
   "types": "rtcstats.d.ts",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/whereby/rtcstats.git"
+    "url": "https://github.com/whereby/rtcstats"
   },
   "keywords": [
     "webrtc",
